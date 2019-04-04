@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TP3_TarefaA",
+            "request": "launch",
+            "mainClass": "TP3_TarefaA"
+        }
+    ]
+}
