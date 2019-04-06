@@ -17,20 +17,107 @@ class Movie{
 
 }
 
+class InsertionSort {    
+
+    private static ArrayList<Movie> movieList = new ArrayList<Movie>();
+
+    public static ArrayList<Movie> getInputArray() {
+        return movieList;
+    }
+
+    public InsertionSort(ArrayList<Movie> movieList) {
+        InsertionSort.movieList = movieList;
+    }
+
+    //algoritmo de ordenacao: INSERCAO
+    //para data de lancamento
+    public void sortGivenArray_date() {                   
+        for(int i=1;i<movieList.size();i++) {
+            Movie key = movieList.get(i);
+            for(int j=i-1; j >=0 ; j--) {
+                if(key.date < movieList.get(j).date) {
+                    movieList.set(j+1,movieList.get(j));
+                    if(j==0) movieList.set(0, key);
+                } else {
+                    movieList.set(j+1, key);
+                    break; 
+                }
+            }
+        }       
+    }
+
+    //para popularidade
+    public void sortGivenArray_popularity() {                   
+        for(int i=1; i < movieList.size(); i++) {
+            Movie key = movieList.get(i);
+            for(int j=i-1; j >= 0; j--) {
+                if(key.rents > movieList.get(j).rents) {
+                    movieList.set(j+1, movieList.get(j));
+                    if(j==0) movieList.set(0, key);
+                } else {
+                    movieList.set(j+1, key);
+                    break; 
+                }
+            }
+        }       
+    }
+
+    //para o nome do filme
+    public void sortGivenArray_name() {                   
+        for(int i=1; i < movieList.size(); i++) {
+            Movie key = movieList.get(i);
+            for(int j=i-1; j>=0; j--) {
+                if(key.name.compareTo(movieList.get(j).name) < 0) {
+                    movieList.set(j+1,movieList.get(j));
+                    if(j==0) movieList.set(0, key);
+                } else {
+                    movieList.set(j+1, key);
+                    break; 
+                }
+            }
+        }       
+    }
+
+    public void printGivenArray(){
+        for(int i=0; i < movieList.size(); i++){
+            System.out.println(movieList.get(i).name);
+        }
+    }
+}
+
 public class TP3_TarefaA {
     public static void main (String[] arguments) {
+        //quantidade de filmes
         Scanner sc = new Scanner(System.in);
         String movieQt = sc.nextLine();
-        ArrayList<Movie> dataBase = new ArrayList<Movie>();
-        ArrayList<Movie> oldToNew = new ArrayList<Movie>();
-        ArrayList<Movie> popular = new ArrayList<Movie>();
-        ArrayList<Movie> alphabetical = new ArrayList<Movie>();
 
+        //lista de todos os filmes conforme inseridos
+        ArrayList<Movie> dataBase = new ArrayList<Movie>();
         dataBase = createDataBase(Integer.parseInt(movieQt));
+
+        //ordenacao conforme data
+        InsertionSort oldToNew = new InsertionSort(dataBase);
+        oldToNew.sortGivenArray_date();
+        System.out.println("\n------------Old to New------------");
+        oldToNew.printGivenArray();
+
+        //ordenacao conforme popularidade
+        InsertionSort popular = new InsertionSort(dataBase);
+        popular.sortGivenArray_popularity();
+        System.out.println("\n------------Popularity------------");
+        popular.printGivenArray();
+
+        //ordem alfabetica
+        InsertionSort alphabetical = new InsertionSort(dataBase);
+        alphabetical.sortGivenArray_name();
+        System.out.println("\n------------Alphabetical------------");
+        alphabetical.printGivenArray();
+        
 
     }
 
-    public static ArrayList<Movie>  createDataBase (int movieQt){ //utility function to read from stdin
+    //ler inputs de filme, criar Movie e adicionar ao arraylist de Movie
+    public static ArrayList<Movie> createDataBase (int movieQt){ //utility function to read from stdin
         ArrayList<Movie> movieList = new ArrayList<Movie>();
         Scanner sc = new Scanner(System.in);
 
