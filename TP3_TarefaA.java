@@ -3,6 +3,16 @@ import java.util.ArrayList;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+
+//descobrir pq nao consigo ler direto do ficheiro ->
+//Exception in thread "main" java.util.NoSuchElementException: No line found
+//        at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
+
+//null
+//Exception in thread "main" java.lang.NullPointerException
+//at TP3_TarefaA.createDataBase(TP3_TarefaA.java:134)
+//at TP3_TarefaA.main(TP3_TarefaA.java:101)
 
 class Movie{
     public String name;
@@ -19,14 +29,14 @@ class Movie{
 
 class InsertionSort {    
 
-    private static ArrayList<Movie> movieList = new ArrayList<Movie>();
+    public ArrayList<Movie> movieList = new ArrayList<Movie>();
 
-    public static ArrayList<Movie> getInputArray() {
+    public ArrayList<Movie> getInputArray() {
         return movieList;
     }
 
     public InsertionSort(ArrayList<Movie> movieList) {
-        InsertionSort.movieList = movieList;
+        this.movieList = movieList;
     }
 
     //algoritmo de ordenacao: INSERCAO
@@ -87,31 +97,71 @@ class InsertionSort {
 
 public class TP3_TarefaA {
     public static void main (String[] arguments) {
+        String input, comando;
+        int pesquisa;
+        StringTokenizer st;
+        
         //quantidade de filmes
-        Scanner sc = new Scanner(System.in);
-        String movieQt = sc.nextLine();
+        String movieQt = readLn(200);
+        //System.out.println(Integer.parseInt(movieQt));
 
         //lista de todos os filmes conforme inseridos
         ArrayList<Movie> dataBase = new ArrayList<Movie>();
         dataBase = createDataBase(Integer.parseInt(movieQt));
 
         //ordenacao conforme data
-        InsertionSort oldToNew = new InsertionSort(dataBase);
-        oldToNew.sortGivenArray_date();
+        InsertionSort isD = new InsertionSort(dataBase);
+        isD.sortGivenArray_date();
         System.out.println("\n------------Old to New------------");
-        oldToNew.printGivenArray();
+        //isD.printGivenArray();
+
+        ArrayList<Movie> oldToNew = isD.getInputArray();
+        for(int i=0; i < oldToNew.size(); i++){
+            System.out.println(oldToNew.get(i).name);
+        }
 
         //ordenacao conforme popularidade
-        InsertionSort popular = new InsertionSort(dataBase);
-        popular.sortGivenArray_popularity();
+        InsertionSort isP = new InsertionSort(dataBase);
+        isP.sortGivenArray_popularity();
         System.out.println("\n------------Popularity------------");
-        popular.printGivenArray();
+        //isP.printGivenArray();
+
+        ArrayList<Movie> popular = isP.getInputArray();
+        for(int i=0; i < popular.size(); i++){
+            System.out.println(popular.get(i).name);
+        }
 
         //ordem alfabetica
-        InsertionSort alphabetical = new InsertionSort(dataBase);
-        alphabetical.sortGivenArray_name();
+        InsertionSort isA = new InsertionSort(dataBase);
+        isA.sortGivenArray_name();
         System.out.println("\n------------Alphabetical------------");
-        alphabetical.printGivenArray();
+        //isA.printGivenArray();
+        ArrayList<Movie> alphabetical = isA.getInputArray();
+        for(int i=0; i < alphabetical.size(); i++){
+            System.out.println(alphabetical.get(i).name);
+        }
+
+
+        do {  // enquanto houver mais linhas para ler...
+            input = readLn(200);
+            st= new StringTokenizer(input.trim());
+            comando = st.nextToken();
+            if (comando.equals("DATA")){
+                pesquisa = Integer.parseInt(st.nextToken());
+                System.out.println(oldToNew.get(pesquisa-1).name);
+            }
+            else if (comando.equals("POPULARIDADE")){
+                pesquisa = Integer.parseInt(st.nextToken());
+                System.out.println(popular.get(pesquisa-1).name);
+            }
+            else if (comando.equals("NOME")){
+                pesquisa = Integer.parseInt(st.nextToken());
+                System.out.println(alphabetical.get(pesquisa-1).name);
+            }
+            else if (comando.equals("TERMINA")){
+                return;
+            }
+        } while (true);
         
 
     }
@@ -119,10 +169,8 @@ public class TP3_TarefaA {
     //ler inputs de filme, criar Movie e adicionar ao arraylist de Movie
     public static ArrayList<Movie> createDataBase (int movieQt){ //utility function to read from stdin
         ArrayList<Movie> movieList = new ArrayList<Movie>();
-        Scanner sc = new Scanner(System.in);
-
         for(int i=0; i < movieQt; i++){
-            String movieInfo = sc.nextLine();
+            String movieInfo = readLn(200);
             //System.out.println(movieInfo);
             String[] parts = movieInfo.split(" ");
             int movieDate = Integer.parseInt(parts[0]);
@@ -135,5 +183,24 @@ public class TP3_TarefaA {
             movieList.add(newMovie);
         }
         return movieList;
+    }
+
+    // leitura do input
+    static String readLn (int maxLg){ //utility function to read from stdin
+        byte lin[] = new byte [maxLg];
+        int lg = 0, car = -1;
+        String line = "";
+        try {
+            while (lg < maxLg){
+                car = System.in.read();
+                if ((car < 0) || (car == '\n')) break;
+                lin [lg++] += car;
+            }
+        }
+        catch (IOException e){
+            return (null);
+        }
+        if ((car < 0) && (lg == 0)) return (null);  // eof
+        return (new String (lin, 0, lg));
     }
 } 
