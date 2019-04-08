@@ -2,6 +2,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - HeapSort",
+            "request": "launch",
+            "mainClass": "HeapSort"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TP3_TarefaB",
+            "request": "launch",
+            "mainClass": "TP3_TarefaB"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - TP3_TarefaA",
             "request": "launch",
             "mainClass": "TP3_TarefaA"

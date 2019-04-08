@@ -113,7 +113,6 @@ public class TP3_TarefaA {
         InsertionSort isD = new InsertionSort(dataBase);
         isD.sortGivenArray_date();
         System.out.println("\n------------Old to New------------");
-        //isD.printGivenArray();
         @SuppressWarnings("unchecked")
         ArrayList<Movie> oldToNew = (ArrayList<Movie>) isD.getInputArray().clone();
         for(int i=0; i < oldToNew.size(); i++){
@@ -124,7 +123,6 @@ public class TP3_TarefaA {
         InsertionSort isP = new InsertionSort(dataBase);
         isP.sortGivenArray_popularity();
         System.out.println("\n------------Popularity------------");
-        //isP.printGivenArray();
         @SuppressWarnings("unchecked")
         ArrayList<Movie> popular = (ArrayList<Movie>)isP.getInputArray().clone();
         for(int i=0; i < popular.size(); i++){
@@ -135,7 +133,6 @@ public class TP3_TarefaA {
         InsertionSort isA = new InsertionSort(dataBase);
         isA.sortGivenArray_name();
         System.out.println("\n------------Alphabetical------------");
-        //isA.printGivenArray();
         @SuppressWarnings("unchecked")
         ArrayList<Movie> alphabetical = (ArrayList<Movie>)isA.getInputArray().clone();
         for(int i=0; i < alphabetical.size(); i++){
