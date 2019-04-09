@@ -118,7 +118,7 @@ class Sort {
     }
     
 
-    /*
+    
     //Quick Sort para o nome do filme
     public void sortGivenArray_name(){
         movieList = quickSort(movieList);
@@ -148,7 +148,7 @@ class Sort {
         sorted = smaller;            // assign it to sorted; one could just as well do: return smaller
         return sorted;
     }
-    */
+    
     public void printGivenArray(){
         for(int i=0; i < movieList.size(); i++){
             System.out.println(movieList.get(i).name);
@@ -172,40 +172,38 @@ public class TP3_TarefaB {
 
         
         //ordenacao conforme data
-        Sort isD = new Sort(dataBase);
-        isD.sortGivenArray_date();
-        System.out.println("\n------------Old to New------------");
-        //isD.printGivenArray();
+        Sort sortDate = new Sort(dataBase);
+        sortDate.sortGivenArray_date();
         @SuppressWarnings("unchecked")
-        ArrayList<Movie> oldToNew = (ArrayList<Movie>) isD.getInputArray().clone();
+        ArrayList<Movie> oldToNew = (ArrayList<Movie>) sortDate.getInputArray().clone();
+        /*System.out.println("\n------------Old to New------------");
         for(int i=0; i < oldToNew.size(); i++){
             System.out.println(oldToNew.get(i).name);
-        }
+        }*/
         
         
         //ordenacao conforme popularidade
-        Sort isP = new Sort(dataBase);
-        isP.sortGivenArray_popularity();
-        System.out.println("\n------------Popularity------------");
-        //isP.printGivenArray();
+        Sort sortPopular = new Sort(dataBase);
+        sortPopular.sortGivenArray_popularity();
         @SuppressWarnings("unchecked")
-        ArrayList<Movie> popular = (ArrayList<Movie>)isP.getInputArray().clone();
+        ArrayList<Movie> popular = (ArrayList<Movie>)sortPopular.getInputArray().clone();
+        /*System.out.println("\n------------Popularity------------");
         for(int i=0; i < popular.size(); i++){
             System.out.println(popular.get(i).name);
-        }
+        }*/
         
-        /*
+        
         //ordem alfabetica
-        Sort isA = new Sort(dataBase);
-        isA.sortGivenArray_name();
-        System.out.println("\n------------Alphabetical------------");
-        //isA.printGivenArray();
+        Sort sortAlpha = new Sort(dataBase);
+        sortAlpha.sortGivenArray_name();
         @SuppressWarnings("unchecked")
-        ArrayList<Movie> alphabetical = (ArrayList<Movie>)isA.getInputArray().clone();
+        ArrayList<Movie> alphabetical = (ArrayList<Movie>)sortAlpha.getInputArray().clone();
+        /*System.out.println("\n------------Alphabetical------------");
         for(int i=0; i < alphabetical.size(); i++){
             System.out.println(alphabetical.get(i).name);
-        }
-        */
+        }*/
+        
+        //System.out.println("-----------------------------------");
 
         do {  // enquanto houver mais linhas para ler...
             input = readLn(200);
@@ -221,7 +219,7 @@ public class TP3_TarefaB {
             }
             else if (comando.equals("NOME")){
                 pesquisa = Integer.parseInt(st.nextToken());
-                //System.out.println(alphabetical.get(pesquisa-1).name);
+                System.out.println(alphabetical.get(pesquisa-1).name);
             }
             else if (comando.equals("TERMINA")){
                 return;

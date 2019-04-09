@@ -103,30 +103,30 @@ public class TP3_TarefaA {
         //ordenacao conforme data
         InsertionSort isD = new InsertionSort(dataBase);
         isD.sortGivenArray_date();
-        //System.out.println("\n------------Old to New------------");
         @SuppressWarnings("unchecked")
         ArrayList<Movie> oldToNew = (ArrayList<Movie>) isD.getInputArray().clone();
-        /*for(int i=0; i < oldToNew.size(); i++){
+        /*System.out.println("\n------------Old to New------------");
+        for(int i=0; i < oldToNew.size(); i++){
             System.out.println(oldToNew.get(i).name);
         }*/
 
         //ordenacao conforme popularidade
         InsertionSort isP = new InsertionSort(dataBase);
         isP.sortGivenArray_popularity();
-        //System.out.println("\n------------Popularity------------");
         @SuppressWarnings("unchecked")
         ArrayList<Movie> popular = (ArrayList<Movie>)isP.getInputArray().clone();
-        /*for(int i=0; i < popular.size(); i++){
+        /*//System.out.println("\n------------Popularity------------");
+        for(int i=0; i < popular.size(); i++){
             System.out.println(popular.get(i).name);
         }*/
 
         //ordem alfabetica
         InsertionSort isA = new InsertionSort(dataBase);
         isA.sortGivenArray_name();
-        //System.out.println("\n------------Alphabetical------------");
         @SuppressWarnings("unchecked")
         ArrayList<Movie> alphabetical = (ArrayList<Movie>)isA.getInputArray().clone();
-        /*for(int i=0; i < alphabetical.size(); i++){
+        /*System.out.println("\n------------Alphabetical------------");
+        for(int i=0; i < alphabetical.size(); i++){
             System.out.println(alphabetical.get(i).name);
         }*/
 
