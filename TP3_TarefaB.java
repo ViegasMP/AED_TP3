@@ -5,15 +5,6 @@ import java.util.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-//descobrir pq nao consigo ler direto do ficheiro ->
-//Exception in thread "main" java.util.NoSuchElementException: No line found
-//        at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
-
-//null
-//Exception in thread "main" java.lang.NullPointerException
-//at TP3_TarefaA.createDataBase(TP3_TarefaA.java:134)
-//at TP3_TarefaA.main(TP3_TarefaA.java:101)
-
 class Movie{
     public String name;
     public int rents;
@@ -107,13 +98,14 @@ class Sort {
         }
     }
 
-    /*
+    
     //Shell Sort para popularidade
-    public void sortGivenArray_popularity() {                   
-        for(int i = movieList.size()/2; i > 0; i /= 2) {
-            for(int j = i; j < movieList.size(); j++) {
+    public void sortGivenArray_popularity() { 
+        int i, j, k;                  
+        for(i = movieList.size()/2; i > 0; i /= 2) {
+            for(j = i; j < movieList.size(); j++) {
                 Movie key = movieList.get(j);
-                for(int k = j; k >= i; k -= i) {
+                for(k = j; k >= i; k -= i) {
                     if(key.rents > movieList.get(k-i).rents) {
                         movieList.set(k, movieList.get(k-i));
                     } else {
@@ -124,7 +116,7 @@ class Sort {
             }
         }       
     }
-    */
+    
 
     /*
     //Quick Sort para o nome do filme
@@ -190,7 +182,7 @@ public class TP3_TarefaB {
             System.out.println(oldToNew.get(i).name);
         }
         
-        /*
+        
         //ordenacao conforme popularidade
         Sort isP = new Sort(dataBase);
         isP.sortGivenArray_popularity();
@@ -201,7 +193,7 @@ public class TP3_TarefaB {
         for(int i=0; i < popular.size(); i++){
             System.out.println(popular.get(i).name);
         }
-        */
+        
         /*
         //ordem alfabetica
         Sort isA = new Sort(dataBase);
@@ -225,7 +217,7 @@ public class TP3_TarefaB {
             }
             else if (comando.equals("POPULARIDADE")){
                 pesquisa = Integer.parseInt(st.nextToken());
-                //System.out.println(popular.get(pesquisa-1).name);
+                System.out.println(popular.get(pesquisa-1).name);
             }
             else if (comando.equals("NOME")){
                 pesquisa = Integer.parseInt(st.nextToken());

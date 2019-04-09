@@ -5,15 +5,6 @@ import java.util.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-//descobrir pq nao consigo ler direto do ficheiro ->
-//Exception in thread "main" java.util.NoSuchElementException: No line found
-//        at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
-
-//null
-//Exception in thread "main" java.lang.NullPointerException
-//at TP3_TarefaA.createDataBase(TP3_TarefaA.java:134)
-//at TP3_TarefaA.main(TP3_TarefaA.java:101)
-
 class Movie{
     public String name;
     public int rents;
@@ -112,34 +103,34 @@ public class TP3_TarefaA {
         //ordenacao conforme data
         InsertionSort isD = new InsertionSort(dataBase);
         isD.sortGivenArray_date();
-        System.out.println("\n------------Old to New------------");
+        //System.out.println("\n------------Old to New------------");
         @SuppressWarnings("unchecked")
         ArrayList<Movie> oldToNew = (ArrayList<Movie>) isD.getInputArray().clone();
-        for(int i=0; i < oldToNew.size(); i++){
+        /*for(int i=0; i < oldToNew.size(); i++){
             System.out.println(oldToNew.get(i).name);
-        }
+        }*/
 
         //ordenacao conforme popularidade
         InsertionSort isP = new InsertionSort(dataBase);
         isP.sortGivenArray_popularity();
-        System.out.println("\n------------Popularity------------");
+        //System.out.println("\n------------Popularity------------");
         @SuppressWarnings("unchecked")
         ArrayList<Movie> popular = (ArrayList<Movie>)isP.getInputArray().clone();
-        for(int i=0; i < popular.size(); i++){
+        /*for(int i=0; i < popular.size(); i++){
             System.out.println(popular.get(i).name);
-        }
+        }*/
 
         //ordem alfabetica
         InsertionSort isA = new InsertionSort(dataBase);
         isA.sortGivenArray_name();
-        System.out.println("\n------------Alphabetical------------");
+        //System.out.println("\n------------Alphabetical------------");
         @SuppressWarnings("unchecked")
         ArrayList<Movie> alphabetical = (ArrayList<Movie>)isA.getInputArray().clone();
-        for(int i=0; i < alphabetical.size(); i++){
+        /*for(int i=0; i < alphabetical.size(); i++){
             System.out.println(alphabetical.get(i).name);
-        }
+        }*/
 
-
+        //System.out.println("-------------------------------");
         do {  // enquanto houver mais linhas para ler...
             input = readLn(200);
             st= new StringTokenizer(input.trim());
