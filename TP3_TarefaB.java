@@ -163,8 +163,9 @@ public class TP3_TarefaB {
         StringTokenizer st;
         
         //quantidade de filmes
-        String movieQt = readLn(200);
-        //System.out.println(Integer.parseInt(movieQt));
+        input = readLn(200);
+        st= new StringTokenizer(input.trim());
+        String movieQt = st.nextToken();
 
         //lista de todos os filmes conforme inseridos
         ArrayList<Movie> dataBase = new ArrayList<Movie>();

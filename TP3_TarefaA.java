@@ -29,9 +29,6 @@ class InsertionSort {
     public InsertionSort(ArrayList<Movie> movieList) {
         this.movieList = movieList;
     }
-
-    //algoritmo de ordenacao: INSERCAO
-    //para data de lancamento
     public void sortGivenArray_date() {                   
         for(int i=1;i<movieList.size();i++) {
             Movie key = movieList.get(i);
@@ -47,7 +44,6 @@ class InsertionSort {
         }       
     }
 
-    //para popularidade
     public void sortGivenArray_popularity() {                   
         for(int i=1; i < movieList.size(); i++) {
             Movie key = movieList.get(i);
@@ -63,7 +59,6 @@ class InsertionSort {
         }       
     }
 
-    //para o nome do filme
     public void sortGivenArray_name() {                   
         for(int i=1; i < movieList.size(); i++) {
             Movie key = movieList.get(i);
@@ -91,47 +86,32 @@ public class TP3_TarefaA {
         String input, comando;
         int pesquisa;
         StringTokenizer st;
-        
-        //quantidade de filmes
-        String movieQt = readLn(200);
-        //System.out.println(Integer.parseInt(movieQt));
 
-        //lista de todos os filmes conforme inseridos
+        input = readLn(200);
+        st= new StringTokenizer(input.trim());
+        String movieQt = st.nextToken();
+        
         ArrayList<Movie> dataBase = new ArrayList<Movie>();
         dataBase = createDataBase(Integer.parseInt(movieQt));
 
-        //ordenacao conforme data
         InsertionSort isD = new InsertionSort(dataBase);
         isD.sortGivenArray_date();
         @SuppressWarnings("unchecked")
         ArrayList<Movie> oldToNew = (ArrayList<Movie>) isD.getInputArray().clone();
-        /*System.out.println("\n------------Old to New------------");
-        for(int i=0; i < oldToNew.size(); i++){
-            System.out.println(oldToNew.get(i).name);
-        }*/
 
-        //ordenacao conforme popularidade
         InsertionSort isP = new InsertionSort(dataBase);
         isP.sortGivenArray_popularity();
         @SuppressWarnings("unchecked")
         ArrayList<Movie> popular = (ArrayList<Movie>)isP.getInputArray().clone();
-        /*//System.out.println("\n------------Popularity------------");
-        for(int i=0; i < popular.size(); i++){
-            System.out.println(popular.get(i).name);
-        }*/
 
-        //ordem alfabetica
         InsertionSort isA = new InsertionSort(dataBase);
         isA.sortGivenArray_name();
         @SuppressWarnings("unchecked")
         ArrayList<Movie> alphabetical = (ArrayList<Movie>)isA.getInputArray().clone();
-        /*System.out.println("\n------------Alphabetical------------");
-        for(int i=0; i < alphabetical.size(); i++){
-            System.out.println(alphabetical.get(i).name);
-        }*/
 
-        //System.out.println("-------------------------------");
-        do {  // enquanto houver mais linhas para ler...
+
+
+        do {
             input = readLn(200);
             st= new StringTokenizer(input.trim());
             comando = st.nextToken();
@@ -155,27 +135,21 @@ public class TP3_TarefaA {
 
     }
 
-    //ler inputs de filme, criar Movie e adicionar ao arraylist de Movie
-    public static ArrayList<Movie> createDataBase (int movieQt){ //utility function to read from stdin
+    public static ArrayList<Movie> createDataBase (int movieQt){ 
         ArrayList<Movie> movieList = new ArrayList<Movie>();
         for(int i=0; i < movieQt; i++){
             String movieInfo = readLn(200);
-            //System.out.println(movieInfo);
             String[] parts = movieInfo.split(" ");
             int movieDate = Integer.parseInt(parts[0]);
-            //System.out.println(movieDate);
             int movieRent = Integer.parseInt(parts[1]);
-            //System.out.println(movieRent);
             String movieName = String.join(" ", Arrays.copyOfRange(parts, 2, parts.length));
-            //System.out.println(movieName);
             Movie newMovie = new Movie(movieName, movieRent, movieDate);
             movieList.add(newMovie);
         }
         return movieList;
     }
 
-    // leitura do input
-    static String readLn (int maxLg){ //utility function to read from stdin
+    static String readLn (int maxLg){
         byte lin[] = new byte [maxLg];
         int lg = 0, car = -1;
         String line = "";
